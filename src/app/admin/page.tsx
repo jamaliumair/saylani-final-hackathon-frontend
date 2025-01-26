@@ -18,6 +18,7 @@ const AdminPanel = () => {
                 setLoans(response.data);
             } catch (err) {
                 setError("Failed to fetch loans.");
+                console.log(err);
             }
         };
         fetchLoans();
@@ -33,6 +34,7 @@ const AdminPanel = () => {
             setLoans(loans.filter((loan) => loan._id !== loanId));
         } catch (err) {
             setError("Failed to delete loan.");
+            console.log(err);
         }
     };
 

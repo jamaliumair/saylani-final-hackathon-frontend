@@ -71,7 +71,6 @@ export default function LoanCalculator() {
     const [initialDepositOptions, setInitialDepositOptions] = useState<number[]>([])
     const [errors, setErrors] = useState<Errors>({})
     const [desiredLoanAmount, setDesiredLoanAmount] = useState<string>("")
-    const [showProceedPopup, setShowProceedPopup] = useState<boolean>(false)
     const [token, setToken] = useState<string | null>(null);
 
 
@@ -92,6 +91,7 @@ export default function LoanCalculator() {
                     depositOptions.push(Math.round(selectedCategory.maxLoan * (i * 0.1)))
                 }
                 depositOptions.push(1000000)
+                console.log(initialDepositOptions)
                 setInitialDepositOptions([...new Set(depositOptions)].sort((a, b) => a - b))
                 setInitialDeposit("")
             }
