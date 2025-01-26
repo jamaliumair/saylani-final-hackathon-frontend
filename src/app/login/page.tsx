@@ -30,7 +30,7 @@ export default function Login() {
     setErrorMessage("");
 
     try {
-      const { data } = await axios.post('http://localhost:4000/login', { email, password });
+      const { data } = await axios.post('http://localhost:4000/auth/login', { email, password });
       setUser(data.data.user);
       setToken(data.data.token);
       localStorage.setItem('token', data.data.token);
@@ -99,7 +99,7 @@ export default function Login() {
         </button>
 
         <p className="mt-4 text-sm text-gray-600">
-          Don't have an account?{" "}
+          Don't have an account?
           <Link
             href="/signup"
             className="text-blue-500 hover:text-blue-600 font-medium transition duration-300"

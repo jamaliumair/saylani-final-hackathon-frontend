@@ -96,7 +96,7 @@ export default function LoanCalculator() {
                 setInitialDeposit("")
             }
         }
-    }, [category])
+    }, [category, initialDepositOptions])
 
     const validateForm = (): boolean => {
         const newErrors: Errors = {}

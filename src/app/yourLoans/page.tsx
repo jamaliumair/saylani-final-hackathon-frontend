@@ -4,9 +4,10 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Loan } from "../admin/page";
 
 export default function YourLoans() {
-    const [loans, setLoans] = useState([]); // State to store loan data
+    const [loans, setLoans] = useState<Loan[]>([]); // State to store loan data
     const [error, setError] = useState(""); // State to handle errors
 
     useEffect(() => {
@@ -69,7 +70,7 @@ export default function YourLoans() {
 
             {loans.length > 0 ? (
                 <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-                    {loans.map((loan: any, index: number) => (
+                    {loans.map((loan: Loan, index: number) => (
                         <li
                             key={index}
                             className="bg-white shadow-xl rounded-lg p-8 border border-gray-200 hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out transform"
@@ -92,22 +93,22 @@ export default function YourLoans() {
                                     <span className="font-semibold">Sub Category:</span> {loan.subcategory}
                                 </p>
                                 <p className="text-gray-700 text-md">
-                                    <span className="font-semibold">Desired Loan:</span> {loan.desiredLoan}
+                                    <span className="font-semibold">Desired Loan:</span> {loan.maxLoanAmount}
                                 </p>
                                 <p className="text-gray-700 text-md">
                                     <span className="font-semibold">Loan Amount:</span>{" "}
                                     <span className="text-green-600 font-bold">
-                                        PKR {loan.loanAmount.toLocaleString()}
+                                        PKR {loan.remainingAmount.toLocaleString()}
                                     </span>
                                 </p>
                                 <p className="text-gray-700 text-md">
                                     <span className="font-semibold">Monthly Payment:</span>{" "}
                                     <span className="text-blue-600 font-bold">
-                                        PKR {loan.monthlyPayment.toLocaleString()}
+                                        PKR {loan.monthlyInstallment.toLocaleString()}
                                     </span>
                                 </p>
                                 <p className="text-gray-700 text-md">
-                                    <span className="font-semibold">Years:</span> {loan.period}
+                                    <span className="font-semibold">Years:</span> {loan.paymentPeriod}
                                 </p>
                             </div>
                         </li>

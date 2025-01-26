@@ -2,9 +2,40 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import mongoose from "mongoose";
+
+export interface Loan {
+    _id: string;
+    userId: mongoose.Types.ObjectId;
+    category: string;
+    subcategory: string;
+    createdAt: Date;
+    maxLoanAmount: number;
+    remainingAmount: number;
+    depositAmount: number;
+    paymentPeriod: number;
+    monthlyInstallment: number;
+    guarantors: {
+      name: string;
+      email: string;
+      location: string;
+      cnic: string;
+    }[];
+    documents: {
+      salarySlip?: string;
+      bankStatement?: string;
+    };
+    appointment: {
+      date: Date;
+      time: string;
+      officeLocation: string;
+    };
+    tokenNumber?: string;
+    qrCode?: string;
+  }
 
 const AdminPanel = () => {
-    const [loans, setLoans] = useState<any[]>([]);
+    const [loans, setLoans] = useState<Loan[]>([]);
     const [error, setError] = useState<string>("");
 
     useEffect(() => {
@@ -46,7 +77,7 @@ const AdminPanel = () => {
             <ul className="space-y-4">
                 {loans.map((loan) => (
                     <li key={loan._id} className="bg-white p-4 rounded shadow-md">
-                        <p><strong>Loan Amount:</strong> {loan.loanAmount}</p>
+                        <p><strong>Loan Amount:</strong> {loan.remainingAmount}</p>
                         <p><strong>Loan Category:</strong> {loan.category}</p>
                         <button
                             onClick={() => handleDelete(loan._id)}
