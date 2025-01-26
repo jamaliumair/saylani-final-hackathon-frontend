@@ -193,11 +193,16 @@ export default function LoanCalculator() {
                 break
         }
     }
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+          let storedUser = localStorage.getItem("userActive");
+          if (storedUser) {
+            storedUser = JSON.parse(storedUser);
+            // Handle user data if needed
+          }
+        }
+      }, []);
 
-    let user = localStorage.getItem("userActive")
-    if (user) {
-        user = JSON.parse(user)
-    }
     const router = useRouter();
 
     const handleCalculation = async () => {
